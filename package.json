@@ -2,10 +2,10 @@
   "name": "softuni-workshop-01-cubicle",
   "version": "1.0.0",
   "description": "01 Workshop at Softuni for project Cubicle",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
-    "start": "index.js",
-    "dev": "nodemon index.js"
+    "start": "./src/index.js",
+    "dev": "nodemon ./src/index.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,8 @@
   "homepage": "https://github.com/MityoDraganov/Softuni-Workshop-01-Cubicle#readme",
   "dependencies": {
     "express": "^4.18.2",
-    "express-handlebars": "^6.0.6"
+    "express-handlebars": "^6.0.6",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
