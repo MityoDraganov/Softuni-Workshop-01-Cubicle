@@ -1,7 +1,12 @@
-const db = require('../db.json')
-exports.homeView = (req,res) =>{
+const {readCubes} = require('./cubeControler')
+
+async function homeView(req,res){
     const {search, from, to} = req.query
-    let cubes = db.cubes
+    const cubes = await readCubes()
+
+    console.log('cubes')
+    console.log(cubes)
+
 
     if(search){
         cubes = cubes.filter(cube => cube.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()))
@@ -21,20 +26,30 @@ exports.homeView = (req,res) =>{
     res.render('index', {cubes, search})
 }
 
-exports.createView = (req,res) =>{
+
+async function createView(req,res){
     res.render('create')
 }
 
-exports.aboutView = (req,res) =>{
+
+async function aboutView (req,res){
     res.render('about')
 }
 
-exports.notFound = (req,res) =>{
+
+async function notFound (req,res){
     res.render('404')
 }
-exports.detailsView = (req,res) =>{
+
+
+async function detailsView (req,res){
     const id = req.params.id
-    const cube = db.cubes.find(x => x.id == id)
+    const cubes = await readCubes()
+    const cube = cubes.find(x => x.id == id)
     
     res.render('details', {cube})
 }
+
+
+
+module.exports = {detailsView, notFound, aboutView, createView, homeView}
