@@ -44,8 +44,10 @@ async function notFound (req,res){
 
 async function detailsView (req,res){
     const id = req.params.id
+    console.log('id')
+    console.log(id);
     const cubes = await readCubes()
-    const cube = cubes.find(x => x.id == id)
+    const cube = cubes.find(x => x._id == id)
     
     res.render('details', {cube})
 }

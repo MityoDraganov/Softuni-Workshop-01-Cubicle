@@ -10,17 +10,17 @@ const cubeModel = require('../models/cubeSchema')
 async function postCube(req,res){
     const {name, description, imageUrl, difficultyLevel} = req.body
     const cubes = await cubeModel.find().lean()
-    console.log('url')
-    console.log(imageUrl)
+    //console.log('url')
+    //console.log(imageUrl)
     
     const _id = cubes[cubes.length -1]._id + 1
 
     const cube = new cubeModel({
-        _id,
-        name,
-        description,
-        imageUrl,
-        difficultyLevel
+        "_id": _id,
+        "name": name,
+        "description": description,
+        "imageURL": imageUrl,
+        "difficultyLevel": difficultyLevel,
     })
 
     cube.save(function(err){
@@ -36,7 +36,7 @@ async function postCube(req,res){
 
 async function readCubes(){
     const cubes = await cubeModel.find().lean()
-    console.log(cubes)
+    //console.log(cubes)
     return cubes
 }
 
