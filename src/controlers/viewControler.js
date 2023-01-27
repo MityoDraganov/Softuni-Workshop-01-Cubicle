@@ -54,6 +54,15 @@ async function detailsView (req,res){
     res.render('details', {cube})
 }
 
+function createAccessoryView (req,res) {
+
+    res.render('createAccessory')
+}
+
+function attachAccessoryView (res,res) {
+
+}
 
 
-module.exports = {detailsView, notFound, aboutView, createView, homeView}
+
+module.exports = {detailsView, notFound, aboutView, createView, homeView, createAccessoryView, attachAccessoryView}

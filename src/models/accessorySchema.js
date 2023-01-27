@@ -15,17 +15,10 @@ const cubeSchema = new mongoose.Schema({
         required: true,
         maxlength: 200,
     },
-    difficultyLevel: {
-        type: Number, 
-        required: true,
-        min: 1,
-        max: 6,
-    },
-    accessories: {
+    cubes: {
 
     }
 })
-
-const cubeModel = mongoose.model('cube', cubeSchema)
-module.exports = cubeModel
+const accessoryModel = mongoose.model('accessory', cubeSchema)
+module.exports = accessoryModel
 
