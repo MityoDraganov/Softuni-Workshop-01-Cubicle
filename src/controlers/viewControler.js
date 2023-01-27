@@ -48,7 +48,9 @@ async function detailsView (req,res){
     console.log(id);
     const cubes = await readCubes()
     const cube = cubes.find(x => x._id == id)
-    
+    if(!cube){
+        res.render('404')
+    }
     res.render('details', {cube})
 }
 
