@@ -1,4 +1,5 @@
 const {readCubes} = require('./cubeControler')
+const {readAccessories} = require('./accessoryControler')
 
 async function homeView(req,res){
     const {search, from, to} = req.query
@@ -59,8 +60,23 @@ function createAccessoryView (req,res) {
     res.render('createAccessory')
 }
 
-function attachAccessoryView (res,res) {
+async function attachAccessoryView (req,res) {
+    
+    
+    const id = req.params.id
+    const cubes = await readCubes()
+    const cube = cubes.find(x => x._id == id)
 
+
+    const accesories = await readAccessories()
+    console.log('myCube')
+    console.log(cube)
+
+    console.log('my accessories')
+    console.log(accesories)
+
+
+    res.render('attachAccessory', {cube, accesories})
 }
 
 

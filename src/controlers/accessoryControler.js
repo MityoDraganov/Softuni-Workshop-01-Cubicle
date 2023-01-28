@@ -21,4 +21,10 @@ async function postCreateAccessory(req,res){
     res.redirect('/')
 }
 
-module.exports = {postCreateAccessory}
+async function readAccessories(){
+    const accessories = accessoryModel.find().lean()
+    console.log('accesories')
+    return accessories
+}
+
+module.exports = {postCreateAccessory, readAccessories}

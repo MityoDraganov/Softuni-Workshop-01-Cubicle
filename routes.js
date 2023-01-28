@@ -10,12 +10,12 @@ Router.get('/about', viewControler.aboutView)
 Router.get('/', viewControler.homeView)
 Router.get('/details/:id', viewControler.detailsView)
 Router.get('/accessory/create', viewControler.createAccessoryView)
-
+Router.get('/attach/accessory/:id', viewControler.attachAccessoryView)
 
 //CRUD
 Router.post('/accessory/create', accessoryControler.postCreateAccessory)
 
-
+Router.post('/attach/accessory/:id',cubeControler.addAccessoryToCube)
 
 Router.post('/create', cubeControler.postCube)
 

@@ -40,4 +40,16 @@ async function readCubes(){
     return cubes
 }
 
-module.exports = {readCubes, postCube, readCubes}
+async function addAccessoryToCube(req,res){
+    console.log('posted')
+    console.log(req.body.accessory)
+
+    const id = req.params.id
+
+    const cube = await cubeModel.findById(Number(id))
+    console.log(cube)
+
+    //res.redirect('/')
+}
+
+module.exports = {readCubes, postCube, readCubes, addAccessoryToCube}
