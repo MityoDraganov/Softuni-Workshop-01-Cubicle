@@ -21,9 +21,7 @@ const cubeSchema = new mongoose.Schema({
         min: 1,
         max: 6,
     },
-    accessories: {
-
-    }
+    accessories: [String]
 })
 
 const cubeModel = mongoose.model('cube', cubeSchema)

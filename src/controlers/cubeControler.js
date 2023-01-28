@@ -21,6 +21,7 @@ async function postCube(req,res){
         "description": description,
         "imageURL": imageUrl,
         "difficultyLevel": difficultyLevel,
+        "accessories": [],
     })
 
     cube.save(function(err){
@@ -42,13 +43,19 @@ async function readCubes(){
 
 async function addAccessoryToCube(req,res){
     console.log('posted')
-    console.log(req.body.accessory)
+    const accessory = req.body.accessory
 
     const id = req.params.id
-
+   // const cubes = await cubeModel.find().lean()
     const cube = await cubeModel.findById(Number(id))
-    console.log(cube)
-
+    cube.accessories.push(accessory)
+    await cube.save()
+    //const cubeAccessories = cube.$clone().accessories
+    //cubeAccessories.push(accessory)
+    //console.log(cubeAccessories)
+    //cube.accessories.push(accessory)
+    //cube.save()
+    //cube.updateOne({ _id: id}, { $push: {accessories: accessory}})
     //res.redirect('/')
 }
 
