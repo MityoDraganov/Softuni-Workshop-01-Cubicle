@@ -87,5 +87,17 @@ async function attachAccessoryView (req,res) {
 }
 
 
+function loginView (req,res) {
+    res.render('loginPage')
+}
 
-module.exports = {detailsView, notFound, aboutView, createView, homeView, createAccessoryView, attachAccessoryView}
+function logoutView (req,res) {
+    res.render('/')
+}
+
+function registerView (req,res) {
+    res.render('registerPage')
+}
+
+
+module.exports = {detailsView, notFound, aboutView, createView, homeView, createAccessoryView, attachAccessoryView, loginView, logoutView, registerView}

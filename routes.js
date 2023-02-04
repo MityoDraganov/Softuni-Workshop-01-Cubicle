@@ -4,13 +4,22 @@ const cubeControler = require('./src/controlers/cubeControler')
 const accessoryControler = require('./src/controlers/accessoryControler')
 
 //VIEWS
+
+//home
 Router.get('/', viewControler.homeView)
-Router.get('/create', viewControler.createView)
 Router.get('/about', viewControler.aboutView)
-Router.get('/', viewControler.homeView)
+
+//cubes
+Router.get('/create', viewControler.createView)
+Router.get('/attach/accessory/:id', viewControler.attachAccessoryView)
 Router.get('/details/:id', viewControler.detailsView)
 Router.get('/accessory/create', viewControler.createAccessoryView)
-Router.get('/attach/accessory/:id', viewControler.attachAccessoryView)
+
+//users
+Router.get('/users/register', viewControler.registerView)
+Router.get('/users/login', viewControler.loginView)
+Router.get('/users/logout', viewControler.logoutView)
+
 
 //CRUD
 Router.post('/accessory/create', accessoryControler.postCreateAccessory)
