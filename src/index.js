@@ -7,7 +7,8 @@ const routes = require('../routes')
 //Cube Schema
 
 
-
+//coockies
+const cookieParser = require('cookie-parser')
 
 //MONGOOSE DB CONNECTION
 async function main(){
@@ -21,18 +22,13 @@ main().catch(err => console.log(err))
 
 
 
-
-
-
-
-
-
 const app = express()
 setupViewEngine(app)
 
 
 app.use(express.static('src/public'));
 app.use(express.urlencoded({extended: false}));
+app.use(cookieParser())
 app.use(routes);
 
 

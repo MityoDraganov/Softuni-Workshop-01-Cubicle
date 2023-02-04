@@ -1,7 +1,11 @@
 const usersModel = require('../models/userSchema')
+
+//hashing and security
 const bycrypt = require('bcrypt')
-const jwtCB = require('jsonwebtoken')
-const cookieParser = require('cookie-parser')
+const jwtPromises = require('../lib/jwtPromises')
+const secret = require('../config/secret')
+//cookies
+
 
 async function findOneUser(username){
     const user =  usersModel.findOne({username: username})
@@ -43,12 +47,20 @@ async function loginPOST (req, res){
     const match = await bycrypt.compare(password, hash)
 
     if(match){
-
+        const token = await jwtPromises.sign({username: username}, secret)
+        res.cookie('user', token)
+        res.redirect('/')
     }
 }
+async function logoutGET (req, res){
+    res.clearCookie('user')
+    res.redirect('/users/login')
+}
 
+/*
 async function logoutPOST (req, res){
     
 }
+*/
 
-module.exports = {registerPOST, loginPOST, logoutPOST}
+module.exports = {registerPOST, loginPOST, logoutGET}

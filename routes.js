@@ -22,7 +22,7 @@ Router.get('/accessory/create', viewControler.createAccessoryView)
 //users
 Router.get('/users/register', viewControler.registerView)
 Router.get('/users/login', viewControler.loginView)
-Router.get('/users/logout', viewControler.logoutView)
+Router.get('/users/logout', authControler.logoutGET)
 
 
 //CRUD
@@ -38,7 +38,7 @@ Router.post('/create', cubeControler.postCube)
 //auth crud
 Router.post('/users/register', authControler.registerPOST)
 Router.post('/users/login', authControler.loginPOST)
-Router.post('/users/logout', authControler.logoutPOST)
+//Router.post('/users/logout', authControler.logoutPOST)
 
 
 
