@@ -9,14 +9,8 @@ const cubeModel = require('../models/cubeSchema')
 
 async function postCube(req,res){
     const {name, description, imageUrl, difficultyLevel} = req.body
-    const cubes = await cubeModel.find().lean()
-    //console.log('url')
-    //console.log(imageUrl)
-    
-    const _id = cubes[cubes.length -1]._id + 1
 
     const cube = new cubeModel({
-        "_id": _id,
         "name": name,
         "description": description,
         "imageURL": imageUrl,
@@ -44,10 +38,11 @@ async function readCubes(){
 async function addAccessoryToCube(req,res){
     console.log('posted')
     const accessory = req.body.accessory
-
+    console.log('thats the access')
+    console.log(accessory)
     const id = req.params.id
    // const cubes = await cubeModel.find().lean()
-    const cube = await cubeModel.findById(Number(id))
+    const cube = await cubeModel.findById(id)
     cube.accessories.push(accessory)
     await cube.save()
     //const cubeAccessories = cube.$clone().accessories
@@ -56,7 +51,7 @@ async function addAccessoryToCube(req,res){
     //cube.accessories.push(accessory)
     //cube.save()
     //cube.updateOne({ _id: id}, { $push: {accessories: accessory}})
-    //res.redirect('/')
+    res.redirect(`/details/${id}`)
 }
 
 module.exports = {readCubes, postCube, readCubes, addAccessoryToCube}

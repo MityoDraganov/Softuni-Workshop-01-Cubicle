@@ -1,14 +1,16 @@
 const {readCubes} = require('./cubeControler')
 const {readAccessories} = require('./accessoryControler')
+const Cube = require('../models/cubeSchema')
+const Accessory = require('../models/accessorySchema')
 
 async function homeView(req,res){
     const {search, from, to} = req.query
-    const cubes = await readCubes()
+    const cubes = await Cube.find().lean()
 
     console.log('cubes')
     console.log(cubes)
 
-
+    /*
     if(search){
         cubes = cubes.filter(cube => cube.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()))
     }
@@ -20,11 +22,11 @@ async function homeView(req,res){
     if(to){
         cubes = cubes.filter(cube => Number(cube.difficulty) <= Number(to))
     }
+    */
 
 
 
-
-    res.render('index', {cubes, search})
+    res.render('index', {cubes})
 }
 
 
@@ -44,15 +46,19 @@ async function notFound (req,res){
 
 
 async function detailsView (req,res){
-    const id = req.params.id
+    const _id = req.params.id
     console.log('id')
-    console.log(id);
-    const cubes = await readCubes()
-    const cube = cubes.find(x => x._id == id)
+    console.log(_id);
+    //const cubes = await readCubes()
+    //const cube = cubes.find(x => x._id == id).accessories
+    const cube = await Cube.findById(_id).populate('accessories').lean()
+    console.log('accesdsdsdsds')
+    console.log(cube)
     if(!cube){
         res.render('404')
-    }
+    } else{
     res.render('details', {cube})
+    }
 }
 
 function createAccessoryView (req,res) {
@@ -64,11 +70,12 @@ async function attachAccessoryView (req,res) {
     
     
     const id = req.params.id
-    const cubes = await readCubes()
-    const cube = cubes.find(x => x._id == id)
-
-
-    const accesories = await readAccessories()
+    //const cubes = await readCubes()
+    //const cube = cubes.find(x => x._id == id)
+    const cube = await Cube.findById(id).lean()
+    console.log('abc cube')
+    console.log(cube)
+    const accesories = await Accessory.find({ _id: { $nin: cube.accessories } }).lean();
     console.log('myCube')
     console.log(cube)
 
