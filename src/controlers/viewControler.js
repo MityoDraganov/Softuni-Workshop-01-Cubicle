@@ -2,7 +2,9 @@ const {readCubes} = require('./cubeControler')
 const {readAccessories} = require('./accessoryControler')
 const Cube = require('../models/cubeSchema')
 const Accessory = require('../models/accessorySchema')
+const cubeService = require('../services/cubeService')
 
+//Cubes
 async function homeView(req,res){
     const {search, from, to} = req.query
     const cubes = await Cube.find().lean()
@@ -61,6 +63,26 @@ async function detailsView (req,res){
     }
 }
 
+async function deleteCubeView (req,res){
+    const id = req.params.id
+    const cube = await cubeService.findOneCube(id)
+    const difficulty = cube.difficultyLevel
+    let label = cubeService.cubeDificultyLabel(difficulty)
+    res.render('deleteCubePage', {cube, label})
+}
+
+async function editCubeView (req, res){
+    const id = req.params.id
+    const cube = await cubeService.findOneCube(id)
+    console.log('edit')
+    console.log(cube)
+    const difficulty = cube.difficultyLevel
+    let label = cubeService.cubeDificultyLabel(difficulty)
+    res.render('editCubePage', {cube, label})
+}
+
+
+//Accessories
 function createAccessoryView (req,res) {
 
     res.render('createAccessory')
@@ -99,4 +121,4 @@ function registerView (req,res) {
 }
 
 
-module.exports = {detailsView, notFound, aboutView, createView, homeView, createAccessoryView, attachAccessoryView, loginView, registerView}
+module.exports = {detailsView, notFound, aboutView, createView, homeView, createAccessoryView, attachAccessoryView, loginView, registerView, deleteCubeView, editCubeView}

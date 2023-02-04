@@ -7,17 +7,23 @@ const accessoryControler = require('./src/controlers/accessoryControler')
 const authControler = require('./src/controlers/authControler')
 
 
+//MIDDLEWARES
+const authMiddleware = require('./src/middlewears/authMiddleware')
+
 //VIEWS
 
 //home and about
 Router.get('/', viewControler.homeView)
 Router.get('/about', viewControler.aboutView)
+Router.get('/404', viewControler.notFound)
 
 //cubes
-Router.get('/create', viewControler.createView)
+Router.get('/cubes/create',viewControler.createView)
 Router.get('/attach/accessory/:id', viewControler.attachAccessoryView)
 Router.get('/details/:id', viewControler.detailsView)
 Router.get('/accessory/create', viewControler.createAccessoryView)
+Router.get('/cubes/edit/:id', viewControler.editCubeView)
+Router.get('/cubes/delete/:id', viewControler.deleteCubeView)
 
 //users
 Router.get('/users/register', viewControler.registerView)
@@ -30,7 +36,7 @@ Router.get('/users/logout', authControler.logoutGET)
 //cubes and accessories crud
 Router.post('/accessory/create', accessoryControler.postCreateAccessory)
 
-Router.post('/attach/accessory/:id',cubeControler.addAccessoryToCube)
+Router.post('/cubes/accessory/atach/:id',cubeControler.addAccessoryToCube)
 
 Router.post('/create', cubeControler.postCube)
 
