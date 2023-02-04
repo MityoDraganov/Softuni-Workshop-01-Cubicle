@@ -20,8 +20,11 @@
   "homepage": "https://github.com/MityoDraganov/Softuni-Workshop-01-Cubicle#readme",
   "dependencies": {
     "@handlebars/allow-prototype-access": "^1.0.5",
+    "bcrypt": "^5.1.0",
+    "cookie-parser": "^1.4.6",
     "express": "^4.18.2",
     "express-handlebars": "^6.0.6",
+    "jsonwebtoken": "^9.0.0",
     "mongodb": "^4.13.0",
     "mongoose": "^6.9.0",
     "path": "^0.12.7"
