@@ -6,6 +6,8 @@ async function findOneCube(id){
     return cube
 }
 
+
+
 function cubeDificultyLabel(difficulty){
     let label = ''
     switch(difficulty){

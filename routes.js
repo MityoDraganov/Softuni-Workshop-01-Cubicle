@@ -18,7 +18,7 @@ Router.get('/about', viewControler.aboutView)
 Router.get('/404', viewControler.notFound)
 
 //cubes
-Router.get('/cubes/create',viewControler.createView)
+Router.get('/cubes/create',authMiddleware.authenticationChech,viewControler.createView)
 Router.get('/attach/accessory/:id', viewControler.attachAccessoryView)
 Router.get('/details/:id', viewControler.detailsView)
 Router.get('/accessory/create', viewControler.createAccessoryView)
